@@ -1,6 +1,8 @@
 const express = require('express')
 const cors = require('cors')
 const { Analytics } = require('@segment/analytics-node');
+const analytics = new Analytics({ writeKey: 'u4hbGHBJ3a2Rl3oXLem6I5YxsomyFF3l' }); // Replace with your Segment write key
+
 
 const app = express()
 
@@ -11,15 +13,12 @@ app.use(cors(
         credentials: true,
     }
 ));
+
 // app.options('*',cors());
-
-
 // app.use(allowCrossDomain);
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-
-const analytics = new Analytics({ writeKey: 'u4hbGHBJ3a2Rl3oXLem6I5YxsomyFF3l' }); // Replace with your Segment write key
-
 
 app.get("/", (req, res) => {
     res.json("Hello");
