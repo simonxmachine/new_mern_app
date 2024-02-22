@@ -15,7 +15,6 @@ app.use(cors(
 ));
 
 app.options('*',cors());
-app.use(allowCrossDomain);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
@@ -27,7 +26,6 @@ app.get("/", (req, res) => {
 app.post('/register', (req, res) => {
     const {name, email, password} = req.body;
     console.log(name, email, password);
-
 
     // analytics.track({
     //     anonymousId: '553bb-95c3-4f8d-af97-86b2b404dcfe',
@@ -41,8 +39,6 @@ app.post('/register', (req, res) => {
     //     }
     //   });
       
-
-
     // RegisterModel.findOne({email: email})
     // .then(user => {
     //     if(user) {
