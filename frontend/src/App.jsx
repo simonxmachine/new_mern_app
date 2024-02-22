@@ -7,7 +7,7 @@ function App() {
   const [name, setName] = useState()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ axios.defaults.withCredentials = true;
     // .catch(err => console.log(err))
 
     try {
-      const response = await fetch("https://mern-app-api-seven.vercel.app/api", {
+      const response = await fetch("https://nodejs-serverless-function-express-nine-rust.vercel.app/api/post", {
             method: "POST",
             body: JSON.stringify({ name, email, password }),
 
