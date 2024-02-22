@@ -11,24 +11,24 @@ axios.defaults.withCredentials = true;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // axios.post('https://mern-app-api-seven.vercel.app/register', {name, email, password})
-    // .then(result => console.log(result))
-    // .catch(err => console.log(err))
+    axios.post('https://mern-app-api-seven.vercel.app/register', {name, email, password})
+    .then(result => console.log(result))
+    .catch(err => console.log(err))
 
-    try {
-      const response = await fetch("https://mern-app-api-seven.vercel.app/register", {
-            method: "POST",
-            body: JSON.stringify({ name, email, password }),
+  //   try {
+  //     const response = await fetch("https://mern-app-api-seven.vercel.app/register", {
+  //           method: "POST",
+  //           body: JSON.stringify({ name, email, password }),
 
-      });
-      if (response.ok) {
-          console.log("Registered Successfully");
-      } else {
-          console.log("Registration Failed");
-      }
-  } catch (error) {
-      console.log(error);
-  }
+  //     });
+  //     if (response.ok) {
+  //         console.log("Registered Successfully");
+  //     } else {
+  //         console.log("Registration Failed");
+  //     }
+  // } catch (error) {
+  //     console.log(error);
+  // }
 
   }
   
