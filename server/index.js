@@ -6,7 +6,8 @@ const app = express()
 
 app.use(cors(
     {
-        origin: ["https://mern-app-frontend-navy.vercel.app/"],
+        origin: ["https://mern-app-frontend-navy.vercel.app"],
+        optionsSuccessStatus: 200,
         credentials: true,
     }
 ));
@@ -19,6 +20,7 @@ const analytics = new Analytics({ writeKey: 'u4hbGHBJ3a2Rl3oXLem6I5YxsomyFF3l' }
 app.get("/", (req, res) => {
     res.json("Hello");
 })
+
 app.post('/register', (req, res) => {
     const {name, email, password} = req.body;
     console.log(name, email, password);
