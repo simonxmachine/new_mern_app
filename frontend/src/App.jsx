@@ -8,12 +8,34 @@ function App() {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 axios.defaults.withCredentials = true;
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post('https://mern-app-api-seven.vercel.app/register', {name, email, password})
-    .then(result => console.log(result))
-    .catch(err => console.log(err))
+    // axios.post('https://mern-app-api-seven.vercel.app/register', {name, email, password})
+    // .then(result => console.log(result))
+    // .catch(err => console.log(err))
+
+
+    try {
+      const response = await fetch("https://mern-app-api-seven.vercel.app/register", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ name, email, password })
+
+      });
+      if (response.ok) {
+          console.log("Registered Successfully");
+      } else {
+          console.log("Registration Failed");
+      }
+  } catch (error) {
+      console.log(error);
   }
+
+  }
+  
   return (
     <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
       <div className="bg-white p-3 rounded w-25">
