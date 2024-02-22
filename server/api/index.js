@@ -10,12 +10,12 @@ app.use(cors(
     {
         origin: ["https://mern-app-frontend-navy.vercel.app"],
         // headers: ['Content-Type', 'X-Requested-With', 'Authorization', 'Access-Control-Allow-Origin'],
-        // credentials: true,
+        credentials: true,
     }
 ));
 
-// app.options('*',cors());
-// app.use(allowCrossDomain);
+app.options('*',cors());
+app.use(allowCrossDomain);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
