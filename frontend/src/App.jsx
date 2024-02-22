@@ -17,13 +17,8 @@ axios.defaults.withCredentials = true;
 
     try {
       const response = await fetch("https://mern-app-api-seven.vercel.app/register", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json", 
-              "Access-Control-Allow-Origin": "*" ,
-              "Access-Control-Allow-Credentials":  "true",
-          },
-          body: JSON.stringify({ name, email, password })
+            method: "POST",
+            body: JSON.stringify({ name, email, password }),
 
       });
       if (response.ok) {
