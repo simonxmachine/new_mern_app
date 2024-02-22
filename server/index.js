@@ -30,17 +30,17 @@ app.post('/register', (req, res) => {
     console.log(name, email, password);
 
 
-    analytics.track({
-        anonymousId: '553bb-95c3-4f8d-af97-86b2b404dcfe',
-        event: 'Item Purchased',
-        properties: {
-          revenue: 39.95,
-          shippingMethod: '2-day', 
-          name: name,
-          email: email,
-          password: password,
-        }
-      });
+    // analytics.track({
+    //     anonymousId: '553bb-95c3-4f8d-af97-86b2b404dcfe',
+    //     event: 'Item Purchased',
+    //     properties: {
+    //       revenue: 39.95,
+    //       shippingMethod: '2-day', 
+    //       name: name,
+    //       email: email,
+    //       password: password,
+    //     }
+    //   });
       
 
 
