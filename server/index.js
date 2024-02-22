@@ -8,7 +8,8 @@ app.use(cors(
     {
         origin: ["https://mern-app-frontend-navy.vercel.app"],
         optionsSuccessStatus: 200,
-        // credentials: true,
+        headers: ['Content-Type', 'X-Requested-With', 'Authorization', 'Access-Control-Allow-Origin'],
+        credentials: true,
     }
 ));
 app.use(express.urlencoded({ extended: true }));
