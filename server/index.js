@@ -10,7 +10,7 @@ app.use(cors(
     {
         origin: ["https://mern-app-frontend-navy.vercel.app/"],
         methods: ["POST", "GET"],
-        // credentials: true
+        credentials: true,
     }
 ));
 app.use(express.urlencoded({ extended: true }));

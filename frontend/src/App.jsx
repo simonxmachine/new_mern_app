@@ -7,7 +7,8 @@ function App() {
   const [name, setName] = useState()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
-// axios.defaults.withCredentials = true;
+  const axios = require('axios');
+axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('https://mern-app-api-seven.vercel.app/register', {name, email, password})
