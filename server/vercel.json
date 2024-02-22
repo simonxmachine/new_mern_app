@@ -14,6 +14,15 @@
       "headers": {
         "Access-Control-Allow-Origin": "*"
       }
+    }, 
+    {
+      "src": "/register", 
+      "dest": "./index.js",
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+
     }
   ]
 }
