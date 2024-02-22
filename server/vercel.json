@@ -1,28 +1,3 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "./index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/",
-      "dest": "./index.js",
-      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-      "headers": {
-        "Access-Control-Allow-Origin": "*"
-      }
-    }, 
-    {
-      "src": "/register", 
-      "dest": "./index.js",
-      "methods": ["POST"],
-      "headers": {
-        "Access-Control-Allow-Origin": "https://mern-app-frontend-navy.vercel.app/"
-      }
-
-    }
-  ]
+"rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }
