@@ -8,11 +8,12 @@ const app = express()
 
 app.use(cors(
     {
-        origin: ["https://mern-app-frontend-navy.vercel.app"],
+        origin: ["https://mern-app-frontend-navy.vercel.app/"],
         methods: ["POST", "GET"],
         // credentials: true
     }
 ));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
 // mongoose.connect('mongodb+srv://yousaf:test123@cluster0.g4i5dey.mongodb.net/test?retryWrites=true&w=majority');
