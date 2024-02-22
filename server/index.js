@@ -1,14 +1,12 @@
 const express = require('express')
-// const mongoose = require('mongoose')
 const cors = require('cors')
-// const RegisterModel = require('./models/Register')
 const { Analytics } = require('@segment/analytics-node');
 
 const app = express()
 
 app.use(cors(
     {
-        origin: ["https://mern-app-frontend-navy.vercel.app/"],
+        origin: ["https://mern-app-frontend-navy.vercel.app"],
         methods: ["POST", "GET"],
         credentials: true,
     }
@@ -16,7 +14,6 @@ app.use(cors(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
-// mongoose.connect('mongodb+srv://yousaf:test123@cluster0.g4i5dey.mongodb.net/test?retryWrites=true&w=majority');
 const analytics = new Analytics({ writeKey: 'u4hbGHBJ3a2Rl3oXLem6I5YxsomyFF3l' }); // Replace with your Segment write key
 
 
