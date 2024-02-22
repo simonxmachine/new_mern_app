@@ -1,9 +1,11 @@
 const express = require('express')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 const cors = require('cors')
-const RegisterModel = require('./models/Register')
+// const RegisterModel = require('./models/Register')
+const { Analytics } = require('@segment/analytics-node');
 
 const app = express()
+
 app.use(cors(
     {
         origin: ["https://mern-app-frontend-navy.vercel.app"],
@@ -13,7 +15,8 @@ app.use(cors(
 ));
 app.use(express.json())
 
-mongoose.connect('mongodb+srv://yousaf:test123@cluster0.g4i5dey.mongodb.net/test?retryWrites=true&w=majority');
+// mongoose.connect('mongodb+srv://yousaf:test123@cluster0.g4i5dey.mongodb.net/test?retryWrites=true&w=majority');
+const analytics = new Analytics({ writeKey: 'u4hbGHBJ3a2Rl3oXLem6I5YxsomyFF3l' }); // Replace with your Segment write key
 
 
 app.get("/", (req, res) => {
@@ -21,16 +24,33 @@ app.get("/", (req, res) => {
 })
 app.post('/register', (req, res) => {
     const {name, email, password} = req.body;
-    RegisterModel.findOne({email: email})
-    .then(user => {
-        if(user) {
-            res.json("Already have an account")
-        } else {
-            RegisterModel.create({name: name, email: email, password: password})
-            .then(result => res.json(result))
-            .catch(err => res.json(err))
+    console.log(name, email, password);
+
+
+    analytics.track({
+        anonymousId: '553bb-95c3-4f8d-af97-86b2b404dcfe',
+        event: 'Item Purchased',
+        properties: {
+          revenue: 39.95,
+          shippingMethod: '2-day', 
+          name: name,
+          email: email,
+          password: password,
         }
-    }).catch(err => res.json(err))
+      });
+      
+
+
+    // RegisterModel.findOne({email: email})
+    // .then(user => {
+    //     if(user) {
+    //         res.json("Already have an account")
+    //     } else {
+    //         RegisterModel.create({name: name, email: email, password: password})
+    //         .then(result => res.json(result))
+    //         .catch(err => res.json(err))
+    //     }
+    // }).catch(err => res.json(err))
 })
 
 
