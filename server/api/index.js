@@ -3,12 +3,11 @@ const cors = require('cors')
 const { Analytics } = require('@segment/analytics-node');
 const analytics = new Analytics({ writeKey: 'u4hbGHBJ3a2Rl3oXLem6I5YxsomyFF3l' }); // Replace with your Segment write key
 
-
 const app = express()
 
 app.use(cors(
     {
-        origin: ["https://mern-app-frontend-navy.vercel.app"],
+        origin: "https://mern-app-frontend-navy.vercel.app",
         // headers: ['Content-Type', 'X-Requested-With', 'Authorization', 'Access-Control-Allow-Origin'],
         credentials: true,
     }
