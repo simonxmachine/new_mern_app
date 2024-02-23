@@ -1,8 +1,10 @@
-// const express = require('express')
-const cors = require('cors')
-const { Analytics } = require('@segment/analytics-node');
-const analytics = new Analytics({ writeKey: 'u4hbGHBJ3a2Rl3oXLem6I5YxsomyFF3l' }); // Replace with your Segment write key
+const express = require('express')
 
+// const { Analytics } = require('@segment/analytics-node');
+// const analytics = new Analytics({ writeKey: 'u4hbGHBJ3a2Rl3oXLem6I5YxsomyFF3l' }); // Replace with your Segment write key
+
+
+const cors = require('cors')
 const app = express()
 
 app.use(cors(
@@ -35,10 +37,8 @@ app.post('/register', (req, res) => {
     //       password: password,
     //     }
     //   });
-      
 
 })
-
 
 app.listen(3001, () => {
     console.log("Server is Running")
