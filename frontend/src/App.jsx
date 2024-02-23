@@ -15,6 +15,49 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const writeKey = 'L65Oymz6KZh8F2rALfQ9rsuLkNZHE64t'; // Replace with your actual write key
+    const encodedCredentials = btoa(`${writeKey}:`); // Base64 encode username:colon
+    
+    const url = 'https://api.segment.io/v1/identify'; // Replace with the actual API endpoint
+   
+
+    const data = {
+      "userId": "019mr8mf4r",
+      "traits": {
+        "email": "pgibbons@example.com",
+        "name": "Peter Gibbons",
+        "industry": "Technology"
+      },
+      "context": {
+        "ip": "24.5.68.47"
+      },
+      "timestamp": "2012-12-02T00:30:08.276Z"
+    }
+    
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Basic ${encodedCredentials}`,
+        'Content-Type': 'application/json', // Adjust based on your data format
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Successfully sent tracking data:', data);
+    })
+    .catch(error => {
+      console.error('Error sending tracking data:', error);
+    });
+
+
+
     // axios.post('https://mern-app-api-seven.vercel.app/register', {name, email, password})
     // .then(result => console.log(result))
     // .catch(err => console.log(err))
@@ -36,24 +79,24 @@ function App() {
     // });
 
 
-    try {
-      const response = await fetch("https://fn.segmentapis.com/?b=ZVZOWGc5eWVIU3RhWGZwY1RBTmdlWTo6MEhsbW43Z2hFSjlOZzhZeWJycmEyRVJsRmFrcVlqOUI=", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json", 
-              "Authorization" : `Bearer 0Hlmn7ghEJ9Ng8Yybrra2ERlFakqYj9B`, 
-            },
-            body: JSON.stringify({ name, email, password }),
+  //   try {
+  //     const response = await fetch("https://api.segment.io/v1/track", {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "application/json", 
+  //             "Authorization" : `Basic L65Oymz6KZh8F2rALfQ9rsuLkNZHE64t:`, 
+  //           },
+  //           body: JSON.stringify({ name, email, password }),
 
-      });
-      if (response.ok) {
-          console.log("Registered Successfully");
-      } else {
-          console.log("Registration Failed");
-      }
-  } catch (error) {
-      console.log(error);
-  }
+  //     });
+  //     if (response.ok) {
+  //         console.log("Registered Successfully");
+  //     } else {
+  //         console.log("Registration Failed");
+  //     }
+  // } catch (error) {
+  //     console.log(error);
+  // }
 
   }
   
