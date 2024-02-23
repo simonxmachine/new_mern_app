@@ -22,24 +22,24 @@ app.get("/", (req, res) => {
 
 
 app.post('/register', async (req, res) => {
-    const { name, email, password } = req.body;
-    console.log(name, email, password);
+        const { name, email, password } = req.body;
+        console.log(name, email, password);
 
-    await analytics.track({
-        anonymousId: '5bb-95c3-4f8d-af97-86b2b404dcfe',
-        event: 'Item Purchased',
-        properties: {
-          revenue: 39.95,
-          shippingMethod: '2-day', 
-          name: name,
-          email: email,
-          password: password,
-        }
-      });
+        await analytics.track({
+                anonymousId: '5bb-95cfsafs3-4f8d-af97-86b2b404dcfe',
+                event: 'Item Purchased',
+                properties: {
+                    revenue: 39.95,
+                    shippingMethod: '2-day', 
+                    name: name,
+                    email: email,
+                    password: password,
+                }
+        });
 
-    res.status(200).json({ message: 'Registration successful' });
+        res.status(200).json({ message: 'Registration successful' });
 });
-    
+        
 
 
 app.listen(3001, () => {
