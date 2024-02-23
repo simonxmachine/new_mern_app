@@ -25,7 +25,7 @@ function App() {
     const data = {
       "userId": "019mr8mf4r",
       "traits": {
-        "email": "pgibbons@example.com",
+        "email": "pgifdsfns@example.com",
         "name": "Peter Gibbons",
         "industry": "Technology"
       },
