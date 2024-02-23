@@ -13,9 +13,6 @@ function App() {
   const [password, setPassword] = useState()
 // axios.defaults.withCredentials = true;
 
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     // axios.post('https://mern-app-api-seven.vercel.app/register', {name, email, password})
@@ -23,7 +20,7 @@ function App() {
     // .catch(err => console.log(err))
 
     analytics.track({
-      anonymousId: '999fsafsafsadcfe',
+      anonymousId: '539275932fdsf',
       event: 'Item Purchased',
       properties: {
         revenue: 39.95,
