@@ -1,6 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+const { Analytics } = require('@segment/analytics-node');
+
+const analytics = new Analytics({ writeKey: 'YBdHaB2iSFODnXzNWHUpymQYvhijm7pH' }); // Replace with your Segment write key
+
 // import axios from 'axios'
 
 function App() {
@@ -9,11 +13,27 @@ function App() {
   const [password, setPassword] = useState()
 // axios.defaults.withCredentials = true;
 
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // axios.post('https://mern-app-api-seven.vercel.app/register', {name, email, password})
     // .then(result => console.log(result))
     // .catch(err => console.log(err))
+
+    analytics.track({
+      anonymousId: '5bb-95cfsfsafsafs3-4f8d-af97-86b2b404dcfe',
+      event: 'Item Purchased',
+      properties: {
+          revenue: 39.95,
+          shippingMethod: '2-day', 
+          name: name,
+          email: email,
+          password: password,
+      }
+    });
+
 
     try {
       const response = await fetch("https://mern-app-api-seven.vercel.app/register", {
