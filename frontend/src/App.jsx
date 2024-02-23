@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from 'axios'
+// import axios from 'axios'
 
 function App() {
   const [name, setName] = useState()
