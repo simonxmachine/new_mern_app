@@ -20,7 +20,6 @@ app.get("/", (req, res) => {
     res.json("Hello");
 })
 
-
 app.post('/register', async (req, res) => {
         const { name, email, password } = req.body;
         console.log(name, email, password);
@@ -40,7 +39,6 @@ app.post('/register', async (req, res) => {
         res.status(200).json({ message: 'Registration successful' });
 });
         
-
 
 app.listen(3001, () => {
     console.log("Server is Running")

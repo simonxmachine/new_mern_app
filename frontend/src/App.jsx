@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Analytics } from '@segment/analytics-node'
+// import { Analytics } from '@segment/analytics-node'
 
-const analytics = new Analytics({ writeKey: 'YBdHaB2iSFODnXzNWHUpymQYvhijm7pH' }); // Replace with your Segment write key
+// const analytics = new Analytics({ writeKey: 'YBdHaB2iSFODnXzNWHUpymQYvhijm7pH' }); // Replace with your Segment write key
 
 // import axios from 'axios'
 
@@ -19,28 +19,29 @@ function App() {
     // .then(result => console.log(result))
     // .catch(err => console.log(err))
 
-    analytics.track({
-      anonymousId: '5392759vvv32fdsf',
-      event: 'Item Purchased',
-      properties: {
-        revenue: 39.95,
-        shippingMethod: '2-day', 
-        name: name,
-        email: email,
-        password: password,
-        userAgent: navigator.userAgent,
-        language: navigator.language,
-        screenWidth: window.screen.width,
-        screenHeight: window.screen.height,
-      }
-    });
+    // analytics.track({
+    //   anonymousId: '5392759vvv32fdsf',
+    //   event: 'Item Purchased',
+    //   properties: {
+    //     revenue: 39.95,
+    //     shippingMethod: '2-day', 
+    //     name: name,
+    //     email: email,
+    //     password: password,
+    //     userAgent: navigator.userAgent,
+    //     language: navigator.language,
+    //     screenWidth: window.screen.width,
+    //     screenHeight: window.screen.height,
+    //   }
+    // });
 
 
     try {
-      const response = await fetch("https://mern-app-api-seven.vercel.app/register", {
+      const response = await fetch("https://fn.segmentapis.com/?b=eG9hQWo1WmJmbTNWMWdMamtzVXFmSjo6VmlRZUZpaURRMHRlSFlwQ3VpQmlGWFhmb1BWNGppVEs=", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json", 
+              "Authorization": "secret_api_key",
             },
             body: JSON.stringify({ name, email, password }),
 
