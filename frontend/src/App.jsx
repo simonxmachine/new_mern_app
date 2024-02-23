@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 // const analytics = new Analytics({ writeKey: 'YBdHaB2iSFODnXzNWHUpymQYvhijm7pH' }); // Replace with your Segment write key
 
-// import axios from 'axios'
+import axios from 'axios'
 
 function App() {
   const [name, setName] = useState()
@@ -35,26 +35,42 @@ function App() {
       "timestamp": "2012-12-02T00:30:08.276Z"
     }
     
-    fetch(url, {
-      method: 'POST',
+    axios.post(url, data, {
       headers: {
         'Authorization': `Basic ${encodedCredentials}`,
-        'Content-Type': 'application/json', // Adjust based on your data format
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      withCredentials: true, // Enable CORS handling for credentials
     })
     .then(response => {
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Successfully sent tracking data:', data);
+      console.log('Successfully sent tracking data:', response.data);
     })
     .catch(error => {
       console.error('Error sending tracking data:', error);
+      // Check for CORS-specific error messages here
     });
+
+
+    // fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Authorization': `Basic ${encodedCredentials}`,
+    //     'Content-Type': 'application/json', // Adjust based on your data format
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    // .then(response => {
+    //   if (!response.ok) {
+    //     throw new Error(`Network response was not ok: ${response.status}`);
+    //   }
+    //   return response.json();
+    // })
+    // .then(data => {
+    //   console.log('Successfully sent tracking data:', data);
+    // })
+    // .catch(error => {
+    //   console.error('Error sending tracking data:', error);
+    // });
 
 
 
