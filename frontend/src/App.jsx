@@ -21,7 +21,6 @@ function App() {
             headers: {
               "Content-Type": "application/json"
             },
-            accept: "*/*",
             body: JSON.stringify({ name, email, password }),
 
       });
