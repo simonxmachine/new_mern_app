@@ -20,7 +20,7 @@ function App() {
     // .catch(err => console.log(err))
 
     analytics.track({
-      anonymousId: '539275932fdsf',
+      anonymousId: '5392759vvv32fdsf',
       event: 'Item Purchased',
       properties: {
         revenue: 39.95,
