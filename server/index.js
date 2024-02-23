@@ -28,7 +28,7 @@ app.post('/register', async (req, res) => {
 
 
     await analytics.track({
-        anonymousId: '553bb-95c3-4f8d-af97-86b2b404dcfe',
+        anonymousId: '5bb-95c3-4f8d-af97-86b2b404dcfe',
         event: 'Item Purchased',
         properties: {
           revenue: 39.95,
