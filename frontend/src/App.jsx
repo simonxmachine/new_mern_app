@@ -16,7 +16,7 @@ function App() {
     // .catch(err => console.log(err))
 
     try {
-      const response = await fetch("https://mern-app-api-seven.vercel.app/register", {
+      const response = await fetch("https://mern-app-api-seven.vercel.app/api/register", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
