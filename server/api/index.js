@@ -3,7 +3,6 @@ const express = require('express')
 // const { Analytics } = require('@segment/analytics-node');
 // const analytics = new Analytics({ writeKey: 'u4hbGHBJ3a2Rl3oXLem6I5YxsomyFF3l' }); // Replace with your Segment write key
 
-
 const cors = require('cors')
 const app = express()
 
