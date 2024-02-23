@@ -23,14 +23,18 @@ function App() {
     // .catch(err => console.log(err))
 
     analytics.track({
-      anonymousId: '5bb-959999safsafs3-4f8d-af97-86b2b404dcfe',
+      anonymousId: '999fsafsafsadcfe',
       event: 'Item Purchased',
       properties: {
-          revenue: 39.95,
-          shippingMethod: '2-day', 
-          name: name,
-          email: email,
-          password: password,
+        revenue: 39.95,
+        shippingMethod: '2-day', 
+        name: name,
+        email: email,
+        password: password,
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        screenWidth: window.screen.width,
+        screenHeight: window.screen.height,
       }
     });
 
