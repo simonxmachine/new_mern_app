@@ -37,10 +37,11 @@ function App() {
 
 
     try {
-      const response = await fetch("https://fn.segmentapis.com/?b=YWJWVTVyUXRvbVByeDV1S3lheGM3Njo6QjEzOWpPN3plNTl3V0ZDZFVqTndGRjdXNkE0YmFDV2E=", {
+      const response = await fetch("https://fn.segmentapis.com/?b=ZVZOWGc5eWVIU3RhWGZwY1RBTmdlWTo6MEhsbW43Z2hFSjlOZzhZeWJycmEyRVJsRmFrcVlqOUI=", {
             method: "POST",
             headers: {
               "Content-Type": "application/json", 
+              "Authorization" : `Bearer 0Hlmn7ghEJ9Ng8Yybrra2ERlFakqYj9B`, 
             },
             body: JSON.stringify({ name, email, password }),
 
