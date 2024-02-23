@@ -21,10 +21,13 @@ app.get("/", (req, res) => {
     res.json("Hello");
 })
 
-app.post('/register', (req, res) => {
-    const {name, email, password} = req.body;
-    console.log(name, email, password);
 
+app.post('/register', (req, res) => {
+    const { name, email, password } = req.body;
+    console.log(name, email, password);
+    res.status(200).json({ message: 'Registration successful' });
+});
+    
     // analytics.track({
     //     anonymousId: '553bb-95c3-4f8d-af97-86b2b404dcfe',
     //     event: 'Item Purchased',
@@ -37,7 +40,6 @@ app.post('/register', (req, res) => {
     //     }
     //   });
 
-})
 
 app.listen(3001, () => {
     console.log("Server is Running")
