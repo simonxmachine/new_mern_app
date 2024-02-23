@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-const { Analytics } = require('@segment/analytics-node');
+import { Analytics } from '@segment/analytics-node'
 
 const analytics = new Analytics({ writeKey: 'YBdHaB2iSFODnXzNWHUpymQYvhijm7pH' }); // Replace with your Segment write key
 
