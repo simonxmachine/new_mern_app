@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { Analytics } = require('@segment/analytics-node');
-const analytics = new Analytics({ writeKey: 'shTqbDDYDBnhfN2sbZMdPh1Dw98UnLvZ' }); // Replace with your Segment write key
+const analytics = new Analytics({ writeKey: 'Rn0f9xNzhwKs02PNDTFrhwulhnYbqnfn' }); // Replace with your Segment write key
 
 const cors = require('cors')
 const app = express()
@@ -26,7 +26,7 @@ app.post('/register', async (req, res) => {
         console.log(name, email, password);
 
         await analytics.track({
-                anonymousId: '5bb-95cfsafs3-4f8d-af97-86b2b404dcfe',
+                anonymousId: '5bb-95cfsfsafsafs3-4f8d-af97-86b2b404dcfe',
                 event: 'Item Purchased',
                 properties: {
                     revenue: 39.95,
