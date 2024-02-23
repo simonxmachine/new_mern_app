@@ -18,6 +18,10 @@ function App() {
     try {
       const response = await fetch("https://nodejs-serverless-function-express-nine-rust.vercel.app/api/post", {
             method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            accept: "*/*",
             body: JSON.stringify({ name, email, password }),
 
       });
