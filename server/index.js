@@ -10,16 +10,20 @@ const cors = require('cors')
 const app = express()
 
 // Enable CORS with appropriate configuration
+
+// Live Server
 app.use(cors({
     origin: 'https://new-mern-app-frontend.vercel.app', // Replace with your frontend's origin
     credentials: true, // Allow sending of credentials if required
   }));
 
-const data = {
-    name: "fsgsgs lee",
-    email: "www.5235325.com", 
-    address: "2222 Main St",
-      };
+// Local Server
+// app.use(cors({
+//     origin: 'http://localhost:5173', // Replace with your frontend's origin
+//     credentials: true, // Allow sending of credentials if required
+// }));
+
+
     
 var connection = snowflake.createConnection({
     account: process.env.SNOWFLAKE_ACCOUNT,
@@ -52,15 +56,16 @@ app.get("/", (req, res) => {
     res.json("Hello");
 })
 
+
 app.post('/register', async (req, res) => {
-    const { name, email, address } = req.body;
-    console.log(name, email, address);
+    const { name, email, address, city, state, country, ip, currentSite, screen, orientation, isMobile, navigator } = req.body;
+    console.log(name, email, address, city, state, country, ip, currentSite, screen, orientation, isMobile, navigator);
 
     const isConnectionValid = await connection.isValidAsync();
     console.log("is connection valid", isConnectionValid);
 
-    const sql = `INSERT INTO public.segment_table (name, email, address) VALUES (?, ?, ?);`;
-    const bindings = [name, email, address]; 
+    const sql = `INSERT INTO public.full_table (name, email, address, city, state, country, ip, origin_site, screen_size, orientation, is_mobile, browser) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+    const bindings = [name, email, address, city, state, country, ip, currentSite, screen, orientation, isMobile, navigator]; 
 
     connection.execute({
         sqlText: sql,

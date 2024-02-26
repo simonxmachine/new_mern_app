@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
@@ -9,8 +9,51 @@ function App() {
   const [address, setAddress] = useState();
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [ip, setIP] = useState("");
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
 
+  const currentSite = document.location.href;
+  const screen = window.screen.width;
+  const orientation = window.screen.orientation.type;
+  const isMobile = window.screen.width < 768;
+  const navigator = window.navigator.userAgent;
+
+
+  const getData = async () => {
+    const res = await axios.get("https://api.ipify.org/?format=json");
+    setIP(res.data.ip);
+    // console.log("this is the ip:", res.data.ip);
+    const ipAddress = res.data.ip;
+    
+// Fetch geolocation data using ipapi
+    const geolocationRes = await axios.get(`https://ipapi.co/${ipAddress}/json/`);
+    const country = geolocationRes.data.country_name;
+    const state = geolocationRes.data.region;
+    const city = geolocationRes.data.city;
+    setCountry(country);
+    setState(state);
+    setCity(city);
+
+    console.log("Country:", country);
+    console.log("State:", state);
+    console.log("State:", city);
+  };
+
+  useEffect(() => {
+    //passing getData method to the lifecycle method
+    getData();
+  }, []);
+
+
+  // Live Url
   const url = 'https://new-mern-app-server.vercel.app/register';
+
+  // Local Url
+  // const url = 'http://localhost:3001/register';
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +64,15 @@ function App() {
         name,
         email,
         address, // Add address to the data object
+        city, 
+        state,
+        country,
+        ip,
+        currentSite,
+        screen,
+        orientation,
+        isMobile,
+        navigator,
       };
 
       const response = await axios.post(url, data, {
