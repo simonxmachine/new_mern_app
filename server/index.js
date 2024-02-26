@@ -11,7 +11,7 @@ const app = express()
 
 // Enable CORS with appropriate configuration
 app.use(cors({
-    origin: 'https://mern-app-frontend-navy.vercel.app', // Replace with your frontend's origin
+    origin: 'https://new-mern-app-frontend.vercel.app', // Replace with your frontend's origin
     credentials: true, // Allow sending of credentials if required
   }));
 

@@ -10,7 +10,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 
-  const url = 'https://mern-app-api-seven.vercel.app/register';
+  const url = 'https://new-mern-app-server.vercel.app/register';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
