@@ -1,2 +1,5 @@
 mern_app/server/node_modules
 /mern_app/server/node_modules
+/node_modules
+server/node_modules
+frontend/node_modules

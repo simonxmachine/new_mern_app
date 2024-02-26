@@ -1,123 +1,47 @@
 import { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { Analytics } from '@segment/analytics-node'
-
-// const analytics = new Analytics({ writeKey: 'YBdHaB2iSFODnXzNWHUpymQYvhijm7pH' }); // Replace with your Segment write key
-
-import axios from 'axios'
+import axios from 'axios';
 
 function App() {
-  const [name, setName] = useState()
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-// axios.defaults.withCredentials = true;
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [address, setAddress] = useState();
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+
+  const url = 'https://mern-app-api-seven.vercel.app/register';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const writeKey = 'L65Oymz6KZh8F2rALfQ9rsuLkNZHE64t'; // Replace with your actual write key
-    const encodedCredentials = btoa(`${writeKey}:`); // Base64 encode username:colon
+    axios.defaults.withCredentials = true;
     
-    const url = 'https://api.segment.io/v1/identify'; // Replace with the actual API endpoint
-   
+    try {
+      const data = {
+        name,
+        email,
+        address, // Add address to the data object
+      };
 
-    const data = {
-      "userId": "019mr8mf4r",
-      "traits": {
-        "email": "pgifdsfns@example.com",
-        "name": "Peter Gibbons",
-        "industry": "Technology"
-      },
-      "context": {
-        "ip": "24.5.68.47"
-      },
-      "timestamp": "2012-12-02T00:30:08.276Z"
+      const response = await axios.post(url, data, {
+        withCredentials: true, // Include credentials for CORS
+      });
+
+      if (response.data.success) {
+        setSuccessMessage('Registration successful!');
+        // Optionally clear form fields or redirect to a confirmation page
+      } else {
+        setErrorMessage(response.data.message || 'Registration failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setErrorMessage('Server error. Please try again later.');
     }
-    
-    axios.post(url, data, {
-      headers: {
-        'Authorization': `Basic ${encodedCredentials}`,
-        'Content-Type': 'application/json',
-      },
-      withCredentials: true, // Enable CORS handling for credentials
-    })
-    .then(response => {
-      console.log('Successfully sent tracking data:', response.data);
-    })
-    .catch(error => {
-      console.error('Error sending tracking data:', error);
-      // Check for CORS-specific error messages here
-    });
-
-
-    // fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Authorization': `Basic ${encodedCredentials}`,
-    //     'Content-Type': 'application/json', // Adjust based on your data format
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    // .then(response => {
-    //   if (!response.ok) {
-    //     throw new Error(`Network response was not ok: ${response.status}`);
-    //   }
-    //   return response.json();
-    // })
-    // .then(data => {
-    //   console.log('Successfully sent tracking data:', data);
-    // })
-    // .catch(error => {
-    //   console.error('Error sending tracking data:', error);
-    // });
-
-
-
-    // axios.post('https://mern-app-api-seven.vercel.app/register', {name, email, password})
-    // .then(result => console.log(result))
-    // .catch(err => console.log(err))
-
-    // analytics.track({
-    //   anonymousId: '5392759vvv32fdsf',
-    //   event: 'Item Purchased',
-    //   properties: {
-    //     revenue: 39.95,
-    //     shippingMethod: '2-day', 
-    //     name: name,
-    //     email: email,
-    //     password: password,
-    //     userAgent: navigator.userAgent,
-    //     language: navigator.language,
-    //     screenWidth: window.screen.width,
-    //     screenHeight: window.screen.height,
-    //   }
-    // });
-
-
-  //   try {
-  //     const response = await fetch("https://api.segment.io/v1/track", {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json", 
-  //             "Authorization" : `Basic L65Oymz6KZh8F2rALfQ9rsuLkNZHE64t:`, 
-  //           },
-  //           body: JSON.stringify({ name, email, password }),
-
-  //     });
-  //     if (response.ok) {
-  //         console.log("Registered Successfully");
-  //     } else {
-  //         console.log("Registration Failed");
-  //     }
-  // } catch (error) {
-  //     console.log(error);
-  // }
 
   }
   
   return (
-    <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
+    <div className="d-flex justify-content-center align-items-center bg-black vh-100">
       <div className="bg-white p-3 rounded w-25">
         <h2>Register</h2>
         <form onSubmit={handleSubmit}>
@@ -134,6 +58,8 @@ function App() {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
+
+
           <div className="mb-3">
             <label htmlFor="email">
               <strong>Email</strong>
@@ -148,15 +74,15 @@ function App() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="email">
-              <strong>Password</strong>
+            <label htmlFor="address">
+              <strong>Address</strong>
             </label>
             <input
-              type="password"
-              placeholder="Enter Password"
-              name="password"
+              type="text"
+              placeholder="Enter Address"
+              name="address"
               className="form-control rounded-0"
-              onChange={(e) => setPassword(e.target.value)}          
+              onChange={(e) => setAddress(e.target.value)}          
             />
           </div>
           <button type="submit" className="btn btn-success w-100 rounded-0">
