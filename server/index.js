@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require('express')
 var snowflake = require('snowflake-sdk');
+// const cookieParser = require('cookie-parser');
 
 // import { Analytics } from '@segment/analytics-node'
 // const analytics = new Analytics({ writeKey: 'YBdHaB2iSFODnXzNWHUpymQYvhijm7pH' }); // Replace with your Segment write key
@@ -49,12 +50,19 @@ var connection = snowflake.createConnection({
 );
 
 
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
+
 app.get("/", (req, res) => {
     res.json("Hello");
 })
+
+
+// Set cookie with cookie-parser
+// app.get('/set-cookie', (req, res) => {
+//     res.cookie('myCookie', 'cookieValue', { maxAge: 900000, httpOnly: true });
+//     res.send('Cookie has been set');
+//   });
 
 
 app.post('/register', async (req, res) => {

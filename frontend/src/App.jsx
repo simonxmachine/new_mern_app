@@ -2,6 +2,12 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
+import Hotjar from '@hotjar/browser';
+
+const siteId = 3884057;
+const hotjarVersion = 6;
+
+Hotjar.init(siteId, hotjarVersion);
 
 function App() {
   const [name, setName] = useState();
@@ -14,11 +20,33 @@ function App() {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
 
+  const [clickCount, setClickCount] = useState(0);
+
   const currentSite = document.location.href;
   const screen = window.screen.width;
   const orientation = window.screen.orientation.type;
   const isMobile = window.screen.width < 768;
   const navigator = window.navigator.userAgent;
+
+  const startTime = new Date();
+
+  console.log("start:", startTime)
+
+// Detect when the user leaves the page:
+window.addEventListener('beforeunload', () => {
+  const endTime = new Date();
+  const timeSpent = (endTime.getTime() - startTime.getTime()) / 1000; // Calculate time in seconds
+  console.log("end:", endTime);
+  console.log("timespent:", timeSpent);
+  // Send the time spent data to your server (or store it locally for later analysis):
+  // Example using a hypothetical server-side script:
+});
+
+
+// window.onload = () => {
+//   const startTime = new Date().getTime();
+//   cookies.set('startTime', startTime);
+// };
 
 
   const getData = async () => {
@@ -53,7 +81,21 @@ function App() {
   // Local Url
   // const url = 'http://localhost:3001/register';
 
+  const handleClick = () => {
+    setClickCount(clickCount + 1);
+  };
 
+// Set a cookie with cookie-parser
+  // const setCookie = async () => {
+  //   try {
+  //     await axios.get('http://localhost:3001/set-cookie');
+  //     console.log('Cookie set successfully');
+  //   } catch (error) {
+  //     console.error('Error setting cookie:', error);
+  //   }
+  // };
+
+  // setCookie();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -145,6 +187,10 @@ function App() {
             Login
           </button>
         </form>
+
+
+        <a href="https://www.google.com" onClick={handleClick} target="_blank" rel="noreferrer">Go to external link</a>
+        
       </div>
     </div>
   );
