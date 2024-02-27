@@ -66,14 +66,14 @@ app.get("/", (req, res) => {
 
 
 app.post('/register', async (req, res) => {
-    const { name, email, address, city, state, country, ip, currentSite, screen, orientation, isMobile, navigator } = req.body;
-    console.log(name, email, address, city, state, country, ip, currentSite, screen, orientation, isMobile, navigator);
+    const { startTime, name, email, address, city, state, country, ip, currentSite, screen, orientation, isMobile, navigator } = req.body;
+    console.log(startTime, name, email, address, city, state, country, ip, currentSite, screen, orientation, isMobile, navigator);
 
     const isConnectionValid = await connection.isValidAsync();
     console.log("is connection valid", isConnectionValid);
 
-    const sql = `INSERT INTO public.full_table (name, email, address, city, state, country, ip, origin_site, screen_size, orientation, is_mobile, browser) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
-    const bindings = [name, email, address, city, state, country, ip, currentSite, screen, orientation, isMobile, navigator]; 
+    const sql = `INSERT INTO public.full_table (start_time, name, email, address, city, state, country, ip, origin_site, screen_size, orientation, is_mobile, browser) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+    const bindings = [startTime, name, email, address, city, state, country, ip, currentSite, screen, orientation, isMobile, navigator]; 
 
     connection.execute({
         sqlText: sql,

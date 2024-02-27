@@ -103,6 +103,7 @@ window.addEventListener('beforeunload', () => {
     
     try {
       const data = {
+        startTime,
         name,
         email,
         address, // Add address to the data object
