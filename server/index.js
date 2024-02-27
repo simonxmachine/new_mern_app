@@ -72,7 +72,7 @@ app.post('/register', async (req, res) => {
     const isConnectionValid = await connection.isValidAsync();
     console.log("is connection valid", isConnectionValid);
 
-    const sql = `INSERT INTO public.full_table (start_time, name, email, address, city, state, country, ip, origin_site, screen_size, orientation, is_mobile, browser) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+    const sql = `INSERT INTO public.full_table2 (start_time, name, email, address, city, state, country, ip, origin_site, screen_size, orientation, is_mobile, browser) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
     const bindings = [startTime, name, email, address, city, state, country, ip, currentSite, screen, orientation, isMobile, navigator]; 
 
     connection.execute({
